@@ -1,0 +1,37 @@
+﻿@model HedonismBlog.ViewModels.RoleViewModel
+
+@{
+    ViewData["Title"] = "CreateTag";
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+
+<h2>Create new Tag</h2>
+<h4>@ViewBag.Message</h4>
+
+<form method="post" asp-controller="Role" asp-action="SubmitCreate">
+    <div asp-validation-summary="ModelOnly"></div>
+    @*     <div>
+    <label asp-for="Name"></label><br />
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+    </div> *@
+    <div>
+        <label asp-for="Name"></label><br />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="Description"></label><br />
+        <textarea asp-for="Description"></textarea>
+        <span asp-validation-for="Description"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Create" />
+    </div>
+    <div>
+        <a href="@Url.Action("Index", "Role")">Show all Roles</a>
+    </div>
+</form>

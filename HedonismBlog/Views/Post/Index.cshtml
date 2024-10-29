@@ -1,0 +1,42 @@
+﻿@using System.Security.Claims
+@model List<HedonismBlog.ViewModels.PostViewModel>
+
+@{
+    ViewData["Title"] = "AllPosts";
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+
+<h2>All posts</h2>
+<div class="row">
+    @foreach (var post in Model)
+    {
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                @* <img class="card-img-top" src="@card.ImageUrl" alt="Card image cap"> *@
+                <div class="card-body">
+                    <h class="card-title"><a href="@Url.Action("View", "Post", new { id = post.Id })">@post.Title</a></h>
+                    @* <h class="card-text">@post.UserEmail</h> *@
+                    <div>
+                    @foreach (var tag in post.Tags)
+                    {
+                        <span class="badge rounded-pill">@tag.Text</span>
+                    }
+                    </div>
+                    <div>
+                        <h class="card-text">by: @post.UserEmail</h>
+                    </div>
+                    @if (User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value == "Administrator" ||
+                   User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value == "Moderator")
+                    {
+                        <a href="@Url.Action("Edit", "Post", new { id = post.Id })">Edit</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div>
+    <a href="@Url.Action("Create", "Post")">Add new post</a>
+</div>

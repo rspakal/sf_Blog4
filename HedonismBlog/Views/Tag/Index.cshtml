@@ -1,0 +1,28 @@
+﻿@model List<HedonismBlog.ViewModels.TagViewModel>
+
+@{
+    ViewData["Title"] = "CreateTag";
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+
+<h2>Existing tags</h2>
+<div class="row">
+    @foreach (var tag in Model)
+    {
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                @* <img class="card-img-top" src="@card.ImageUrl" alt="Card image cap"> *@
+                <div class="card-body">
+                    <h6 class="card-title">@tag.Text</h6>
+                    @* <p class="card-text">@card.Content</p> *@
+                    <a href="@Url.Action("Edit", "Tag", new { id = tag.Id })">Edit</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div>
+    <a href="@Url.Action("Create", "Tag")">Add new tag</a>
+</div>

@@ -1,0 +1,36 @@
+﻿@model HedonismBlog.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "SignIn";
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+
+<h2>Sign in</h2>
+<h4>@ViewBag.Message</h4>
+<form method="post" asp-controller="authentication" asp-action="submitSignIn">
+    <div asp-validation-summary="ModelOnly"></div>
+    @*     <div>
+    <label asp-for="Name"></label><br />
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+    </div> *@
+    <div>
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label><br />
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Sign in" />
+    </div>
+    <div>
+        <p>Do not have account yet? <a href="@Url.Action("Register", "Registration")">Register now!</a></p>
+    </div>
+</form>

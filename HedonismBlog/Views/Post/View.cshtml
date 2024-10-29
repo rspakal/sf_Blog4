@@ -1,0 +1,59 @@
+﻿@model HedonismBlog.ViewModels.PostViewModel
+
+@{
+    ViewData["Title"] = "ViewPost";
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+
+<h2>@Model.Title</h2>
+<div>
+    @foreach (var tag in Model.Tags)
+    {
+        <span class="badge rounded-pill">@tag.Text</span>
+    }
+</div>
+<div>
+    <p>@Model.Content</p>
+</div>
+<div class="row">
+    @foreach (var comment in Model.Comments)
+    {
+        <div class="col-md-12">
+            <div class="card" style="width: 18rem;">
+                @* <img class="card-img-top" src="@card.ImageUrl" alt="Card image cap"> *@
+                <div class="card-body">
+                    @* <h6 class="card-title"><a href="@Url.Action("View", "Post", new { id = post.Id })">@post.Title</a></h6> *@
+                    <p class="card-text">@comment.Content</p>
+                    @* <a href="@Url.Action("Edit", "Post", new { id = post.Id })">Edit</a> *@
+                </div>
+                <div>
+                    <p>@comment.UserEmail</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <form method="post" asp-controller="Comment" asp-action="Create">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <div>
+                <label>Comment</label>
+            </div>
+            <textarea asp-for="NewComment.Content"></textarea>
+            <span asp-validation-for="NewComment.Content"></span>
+        </div>
+        <div>
+            <input type="hidden" asp-for="Id" />
+        </div>
+        <div>
+            <input type="submit" value="Add" />
+        </div>
+    </form>
+}asp
+<div>
+    <a href="@Url.Action("Index", "Post")">Back to posts list</a>
+</div>
