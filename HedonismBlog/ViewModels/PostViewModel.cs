@@ -11,7 +11,7 @@ namespace HedonismBlog.ViewModels
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Title is required.")]
-        [StringLength(20, ErrorMessage = "Title must be between 5 and 20 characters long.", MinimumLength = 5)]
+        [StringLength(50, ErrorMessage = "Title must be between 5 and 50 characters long.", MinimumLength = 5)]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Content is required.")]

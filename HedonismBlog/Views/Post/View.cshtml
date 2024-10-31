@@ -15,7 +15,7 @@
     }
 </div>
 <div>
-    <p>@Model.Content</p>
+    <p class="post-content">@Model.Content</p>
 </div>
 <div class="row">
     @foreach (var comment in Model.Comments)
@@ -23,13 +23,13 @@
         <div class="col-md-12">
             <div class="card" style="width: 18rem;">
                 @* <img class="card-img-top" src="@card.ImageUrl" alt="Card image cap"> *@
+                <div>
+                    <p>@comment.UserEmail</p>
+                </div>
                 <div class="card-body">
                     @* <h6 class="card-title"><a href="@Url.Action("View", "Post", new { id = post.Id })">@post.Title</a></h6> *@
                     <p class="card-text">@comment.Content</p>
                     @* <a href="@Url.Action("Edit", "Post", new { id = post.Id })">Edit</a> *@
-                </div>
-                <div>
-                    <p>@comment.UserEmail</p>
                 </div>
             </div>
         </div>

@@ -12,10 +12,10 @@
 <div class="row">
     @foreach (var post in Model)
     {
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="card" style="width: 18rem;">
                 @* <img class="card-img-top" src="@card.ImageUrl" alt="Card image cap"> *@
-                <div class="card-body">
+                <div class="card-body custom-card-padding">
                     <h class="card-title"><a href="@Url.Action("View", "Post", new { id = post.Id })">@post.Title</a></h>
                     @* <h class="card-text">@post.UserEmail</h> *@
                     <div>

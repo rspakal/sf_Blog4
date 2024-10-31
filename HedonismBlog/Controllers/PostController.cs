@@ -97,6 +97,10 @@ namespace HedonismBlog.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitEdit(PostViewModel postViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", postViewModel);
+            }
             var user = await _userRepository.GetByEmail(postViewModel.UserEmail);
             postViewModel.Tags = postViewModel.Tags.Where(t => t.IsSelected == true).ToList();
             var post = _mapper.Map<Post>(postViewModel);

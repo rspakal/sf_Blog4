@@ -11,10 +11,10 @@
 <div class="row">
     @foreach (var role in Model)
     {
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="card" style="width: 18rem;">
                 @* <img class="card-img-top" src="@card.ImageUrl" alt="Card image cap"> *@
-                <div class="card-body">
+                <div class="card-body custom-card-padding">
                     <h6 class="card-title">@role.Name</h6>
                     <p class="card-text">@role.Description</p>
                     <a href="@Url.Action("Edit", "Role", new { id = role.Id })">Edit</a>
